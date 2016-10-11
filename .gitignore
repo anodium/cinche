@@ -1,0 +1,8 @@
+### Haxe ###
+/bin/
+/lib/
+
+### HaxeFlixel ###
+/build/
+/export/
+/report/
