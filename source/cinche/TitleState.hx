@@ -18,10 +18,10 @@ class TitleState extends FlxState
 	{
 		super.create();
 
-		_logo = new FlxSprite(-_LOGO_X*2, _LOGO_Y, Assets.getBitmapData("assets/images/logo.png"));
+		_logo = new FlxSprite(-64, _LOGO_Y, Assets.getBitmapData("assets/images/logo.png"));
 		_logo.pixelPerfectRender = true;
 
-		_tween = FlxTween.linearMotion(_logo, -_LOGO_X*2, _LOGO_Y, _LOGO_X, _LOGO_Y, 1.5, true);
+		_tween = FlxTween.linearMotion(_logo, -64, _LOGO_Y, _LOGO_X, _LOGO_Y, 1.5, true);
 
 		add(_logo);
 		_tween.start();
