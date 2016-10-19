@@ -20,7 +20,9 @@ class TitleState extends FlxState
 
 		_logo = new FlxSprite(-_LOGO_X*2, _LOGO_Y, Assets.getBitmapData("assets/images/logo.png"));
 		_logo.pixelPerfectRender = true;
+
 		_tween = FlxTween.linearMotion(_logo, -_LOGO_X*2, _LOGO_Y, _LOGO_X, _LOGO_Y, 1.5, true);
+
 		add(_logo);
 		_tween.start();
 	}
@@ -32,7 +34,8 @@ class TitleState extends FlxState
 
 	override public function destroy():Void
 	{
-		_logo = null;
+		_tween.destroy();
+		_logo.destroy();
 
 		super.destroy();
 	}
