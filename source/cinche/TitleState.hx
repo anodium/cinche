@@ -4,27 +4,27 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.tweens.FlxTween;
-import openfl.Assets;
 
 class TitleState extends FlxState
 {
-	private var _logo:FlxSprite;
-	private static inline var _LOGO_X = 15;
-	private static inline var _LOGO_Y = 8;
+	private var logo:FlxSprite = new FlxSprite();
+	private static inline var LOGO_X = 15;
+	private static inline var LOGO_Y = 8;
 
-	private var _tween:FlxTween;
+	private var tween:FlxTween;
 
 	override public function create():Void
 	{
 		super.create();
 
-		_logo = new FlxSprite(-64, _LOGO_Y, Assets.getBitmapData("assets/images/logo.png"));
-		_logo.pixelPerfectRender = true;
+		logo.loadGraphic("assets/images/logo.png");
+		logo.x = -64;
+		logo.y = LOGO_Y;
 
-		_tween = FlxTween.linearMotion(_logo, -64, _LOGO_Y, _LOGO_X, _LOGO_Y, 1.5, true);
+		tween = FlxTween.tween(logo, { x: LOGO_X, y: LOGO_Y}, 1.5, { type: FlxTween.ONESHOT });
 
-		add(_logo);
-		_tween.start();
+		add(logo);
+		tween.start();
 	}
 
 	override public function update(elapsed:Float):Void
@@ -34,8 +34,8 @@ class TitleState extends FlxState
 
 	override public function destroy():Void
 	{
-		_tween.destroy();
-		_logo.destroy();
+		tween.destroy();
+		logo.destroy();
 
 		super.destroy();
 	}
