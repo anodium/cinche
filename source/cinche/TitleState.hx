@@ -3,6 +3,7 @@ package cinche;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.effects.FlxFlicker;
 import flixel.tweens.FlxTween;
 
 class TitleState extends FlxState
@@ -42,6 +43,7 @@ class TitleState extends FlxState
 
 	private function show_prompt(tween:FlxTween):Void
 	{
+		FlxFlicker.flicker(prompt, 0.35, 0.5, true);
 		add(prompt);
 	}
 
