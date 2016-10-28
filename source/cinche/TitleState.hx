@@ -26,11 +26,19 @@ class TitleState extends FlxState
 		logo.x = -64;
 		logo.y = LOGO_Y;
 
-		#if (desktop || web)
+		#if desktop
 		prompt.loadGraphic("assets/images/start.png");
 		#elseif mobile
 		prompt.loadGraphic("assets/images/touch.png");
+		#elseif web
+		if (FlxG.onMobile)
+		{
+			prompt.loadGraphic("assets/images/touch.png");
+		}else{
+			prompt.loadGraphic("assets/images/start.png");
+		}
 		#end
+
 		prompt.x = PROMPT_X;
 		prompt.y = PROMPT_Y;
 
