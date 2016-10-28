@@ -34,7 +34,7 @@ class TitleState extends FlxState
 		if (FlxG.onMobile)
 		{
 			prompt.loadGraphic("assets/images/touch.png");
-		}else{
+		} else {
 			prompt.loadGraphic("assets/images/start.png");
 		}
 		#end
@@ -57,6 +57,20 @@ class TitleState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
+		#if desktop
+		if (FlxG.keys.firstJustPressed() != -1 && !FlxG.onMobile)
+		#elseif mobile
+		if (FlxG.touches.getFirst() != null && FlxG.onMobile)
+		#elseif web
+		if (
+			(FlxG.keys.firstJustPressed() != -1 && !FlxG.onMobile) ||
+			(FlxG.touches.getFirst() != null && FlxG.onMobile)
+		)
+		#end
+		{
+			FlxFlicker.flicker(prompt, 0.15, 0.25, true);
+		}
+
 		super.update(elapsed);
 	}
 
