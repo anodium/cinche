@@ -25,6 +25,12 @@
 	<!--Mobile-specific-->
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
 
+	<!--Android and iOS stuff-->
+	<android target-sdk-version="19" />
+	<window hardware="true" allow-shaders="true" require-shaders="true" if="cpp"/>
+	<window vsync="true" antialiasing="4" if="cpp" />
+	<window orientation="landscape" if="cpp"/>
+
 	<!-- _____________________________ Path Settings ____________________________ -->
 
 	<set name="BUILD_DIR" value="export" />
