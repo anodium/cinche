@@ -18,6 +18,8 @@ class TitleState extends FlxState
 	private static inline var PROMPT_X = 20;
 	private static inline var PROMPT_Y = 51;
 
+	private var start_sound = FlxG.sound.load("assets/sounds/engine_start_white.wav");
+
 	override public function create():Void
 	{
 		super.create();
@@ -68,10 +70,17 @@ class TitleState extends FlxState
 		)
 		#end
 		{
-			FlxFlicker.flicker(prompt, 0.15, 0.25, true);
+			FlxFlicker.flicker(prompt, 0.25, 0.45, true);
+			start_sound.onComplete = show_menu;
+			start_sound.play();
 		}
 
 		super.update(elapsed);
+	}
+
+	private function show_menu():Void
+	{
+		FlxG.switchState(new MenuState());
 	}
 
 	override public function destroy():Void
