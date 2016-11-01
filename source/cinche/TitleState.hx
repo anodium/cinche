@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.effects.FlxFlicker;
+import flixel.system.FlxSound;
 import flixel.tweens.FlxTween;
 
 class TitleState extends FlxState
@@ -18,11 +19,16 @@ class TitleState extends FlxState
 	private static inline var PROMPT_X = 20;
 	private static inline var PROMPT_Y = 51;
 
-	private var start_sound = FlxG.sound.load("assets/sounds/engine_start_white.wav");
+	private var start_sound:FlxSound;
+
+	private var transition_started:Bool = false;
 
 	override public function create():Void
 	{
 		super.create();
+
+		start_sound = FlxG.sound.load("assets/sounds/engine_start_white.wav");
+		start_sound.onComplete = show_menu;
 
 		logo.loadGraphic("assets/images/logo.png");
 		logo.x = -64;
@@ -70,9 +76,12 @@ class TitleState extends FlxState
 		)
 		#end
 		{
-			FlxFlicker.flicker(prompt, 0.25, 0.45, true);
-			start_sound.onComplete = show_menu;
-			start_sound.play();
+			if (!transition_started)
+			{
+				transition_started = true;
+				FlxFlicker.flicker(prompt, 0.05, 0.15, true);
+				start_sound.play();
+			}
 		}
 
 		super.update(elapsed);
@@ -85,6 +94,7 @@ class TitleState extends FlxState
 
 	override public function destroy():Void
 	{
+		start_sound.destroy();
 		prompt.destroy();
 		tween.destroy();
 		logo.destroy();
