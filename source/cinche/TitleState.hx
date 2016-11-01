@@ -28,7 +28,7 @@ class TitleState extends FlxState
 		super.create();
 
 		start_sound = FlxG.sound.load("assets/sounds/engine_start_white.wav");
-		start_sound.onComplete = function ()
+		start_sound.onComplete = function()
 		                         {
 			                         FlxG.switchState(new MenuState());
 		                         };
@@ -55,7 +55,7 @@ class TitleState extends FlxState
 
 		tween = FlxTween.tween(logo, { x: LOGO_X, y: LOGO_Y }, 1.5,
 		                      { type: FlxTween.ONESHOT, onComplete: 
-		                      function (tween:FlxTween)
+		                      function(tween:FlxTween)
 		                      {
 			                      FlxFlicker.flicker(prompt, 0.35, 0.5, true);
 			                      add(prompt);
@@ -81,6 +81,14 @@ class TitleState extends FlxState
 			if (!transition_started)
 			{
 				transition_started = true;
+
+				//Do transition cleanup in case it's interrupted by the user.
+				tween.cancel();
+				logo.x = LOGO_X;
+				prompt.x = PROMPT_X;
+				prompt.y = PROMPT_Y;
+				add(prompt);
+
 				FlxFlicker.flicker(prompt, 0.05, 0.15, true);
 				start_sound.play();
 			}
