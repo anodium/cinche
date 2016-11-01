@@ -28,7 +28,10 @@ class TitleState extends FlxState
 		super.create();
 
 		start_sound = FlxG.sound.load("assets/sounds/engine_start_white.wav");
-		start_sound.onComplete = show_menu;
+		start_sound.onComplete = function ()
+		                         {
+			                         FlxG.switchState(new MenuState());
+		                         };
 
 		logo.loadGraphic("assets/images/logo.png");
 		logo.x = -64;
@@ -51,16 +54,15 @@ class TitleState extends FlxState
 		prompt.y = PROMPT_Y;
 
 		tween = FlxTween.tween(logo, { x: LOGO_X, y: LOGO_Y }, 1.5,
-		                      { type: FlxTween.ONESHOT, onComplete: show_prompt });
+		                      { type: FlxTween.ONESHOT, onComplete: 
+		                      function (tween:FlxTween)
+		                      {
+			                      FlxFlicker.flicker(prompt, 0.35, 0.5, true);
+			                      add(prompt);
+		                      }});
 
 		add(logo);
 		tween.start();
-	}
-
-	private function show_prompt(tween:FlxTween):Void
-	{
-		FlxFlicker.flicker(prompt, 0.35, 0.5, true);
-		add(prompt);
 	}
 
 	override public function update(elapsed:Float):Void
@@ -85,11 +87,6 @@ class TitleState extends FlxState
 		}
 
 		super.update(elapsed);
-	}
-
-	private function show_menu():Void
-	{
-		FlxG.switchState(new MenuState());
 	}
 
 	override public function destroy():Void
