@@ -27,26 +27,30 @@ class TitleState extends FlxState
 	{
 		super.create();
 
-		start_sound = FlxG.sound.load("assets/sounds/engine_start_white.wav");
+		#if flash
+		start_sound = FlxG.sound.load("sounds/engine_start_white.mp3");
+		#else
+		start_sound = FlxG.sound.load("sounds/engine_start_white.ogg");
+		#end
 		start_sound.onComplete = function()
 		                         {
 			                         FlxG.switchState(new MenuState());
 		                         };
 
-		logo.loadGraphic("assets/images/logo.png");
+		logo.loadGraphic("images/logo.png");
 		logo.x = -64;
 		logo.y = LOGO_Y;
 
 		#if desktop
-		prompt.loadGraphic("assets/images/start.png");
+		prompt.loadGraphic("images/start.png");
 		#elseif mobile
-		prompt.loadGraphic("assets/images/touch.png");
+		prompt.loadGraphic("images/touch.png");
 		#elseif web
 		if (FlxG.onMobile)
 		{
-			prompt.loadGraphic("assets/images/touch.png");
+			prompt.loadGraphic("images/touch.png");
 		} else {
-			prompt.loadGraphic("assets/images/start.png");
+			prompt.loadGraphic("images/start.png");
 		}
 		#end
 
