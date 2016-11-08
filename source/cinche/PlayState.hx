@@ -41,7 +41,32 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
-		//Stamp dits onto field for trail and collision.
+		//Check collisions.
+		if (FlxG.pixelPerfectOverlap(ditB, ditO))
+		{
+			//They both crashed into each other; it's a draw.
+			#if debug
+			FlxG.cameras.flash(FlxColor.WHITE);
+			#end
+		}
+
+		if (FlxG.pixelPerfectOverlap(ditB, field))
+		{
+			//ditB crashed into a trail; ditO wins.
+			#if debug
+			FlxG.cameras.flash(FlxColor.BLUE);
+			#end
+		}
+
+		if (FlxG.pixelPerfectOverlap(ditO, field))
+		{
+			//ditO crashed into a trail; ditB wins.
+			#if debug
+			FlxG.cameras.flash(FlxColor.ORANGE);
+			#end
+		}
+
+		//Stamp dits onto field for trail.
 		field.stamp(ditB, cast (ditB.x, Int), cast (ditB.y, Int));
 		field.stamp(ditO, cast (ditO.x, Int), cast (ditO.y, Int));
 
