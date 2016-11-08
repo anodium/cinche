@@ -3,13 +3,11 @@ package cinche;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.text.FlxText;
-import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
-import flixel.math.FlxMath;
 
 class PlayState extends FlxState
 {
+	//Initialize objects
 	private var field:FlxSprite = new FlxSprite(0, 0);
 
 	private var ditB:FlxSprite = new FlxSprite();
@@ -43,9 +41,11 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
+		//Stamp dits onto field for trail and collision.
 		field.stamp(ditB, cast (ditB.x, Int), cast (ditB.y, Int));
 		field.stamp(ditO, cast (ditO.x, Int), cast (ditO.y, Int));
 
+		//ditB Input
 		if (FlxG.keys.pressed.W)
 		{
 			ditB.y -= 1;
@@ -66,6 +66,7 @@ class PlayState extends FlxState
 			ditB.x += 1;
 		}
 
+		//ditO Input
 		if (FlxG.keys.pressed.UP)
 		{
 			ditO.y -= 1;
