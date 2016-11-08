@@ -6,7 +6,8 @@ import flixel.FlxState;
 import flixel.util.FlxColor;
 
 //Abstract away any internal representation for an enumeration.
-private enum Direction {
+private enum Direction
+{
 	UP;
 	DOWN;
 	LEFT;
@@ -57,9 +58,12 @@ class PlayState extends FlxState
 		if (FlxG.pixelPerfectOverlap(ditB, ditO))
 		{
 			//They both crashed into each other; it's a draw.
-			#if debug
-			FlxG.camera.flash(FlxColor.WHITE);
-			#end
+			FlxG.camera.flash(FlxColor.WHITE, 1,
+			                  function (){
+				                  results = new ResultsState();
+				                  results.result = ResultsState.Result.DRAW;
+				                  FlxG.switchState(results);
+			                  });
 		}
 
 		if (FlxG.pixelPerfectOverlap(ditB, field) ||
@@ -67,19 +71,24 @@ class PlayState extends FlxState
 		    0 >= ditB.y || ditB.y >= 64)
 		{
 			//ditB crashed into a trail; ditO wins.
-			#if debug
-			FlxG.camera.flash(FlxColor.BLUE);
-			#end
+			FlxG.camera.flash(FlxColor.BLUE, 1,
+			                  function (){
+				                  results = new ResultsState();
+				                  results.result = ResultsState.Result.BLUE_WIN;
+				                  FlxG.switchState(results);
+			                  });
 		}
 
 		if (FlxG.pixelPerfectOverlap(ditO, field) ||
 		    0 >= ditO.x || ditO.x >= 64 ||
 		    0 >= ditO.y || ditO.y >= 64)
 		{
-			//ditO crashed into a trail; ditB wins.
-			#if debug
-			FlxG.camera.flash(FlxColor.ORANGE);
-			#end
+			FlxG.camera.flash(FlxColor.ORANGE, 1,
+			                  function (){
+				                  results = new ResultsState();
+				                  results.result = ResultsState.Result.ORANGE_WIN;
+				                  FlxG.switchState(results);
+			                  });
 		}
 
 		//Stamp dits onto field for trail.
