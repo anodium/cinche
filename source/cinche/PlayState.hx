@@ -60,9 +60,8 @@ class PlayState extends FlxState
 			//They both crashed into each other; it's a draw.
 			FlxG.camera.flash(FlxColor.WHITE, 1,
 			                  function (){
-				                  results = new ResultsState();
-				                  results.result = ResultsState.Result.DRAW;
-				                  FlxG.switchState(results);
+				                  FlxG.switchState(
+									  new ResultsState(ResultsState.Result.DRAW));
 			                  });
 		}
 
@@ -73,9 +72,8 @@ class PlayState extends FlxState
 			//ditB crashed into a trail; ditO wins.
 			FlxG.camera.flash(FlxColor.BLUE, 1,
 			                  function (){
-				                  results = new ResultsState();
-				                  results.result = ResultsState.Result.BLUE_WIN;
-				                  FlxG.switchState(results);
+				                  FlxG.switchState(
+									  new ResultsState(ResultsState.Result.BLUE_WIN));
 			                  });
 		}
 
@@ -85,9 +83,8 @@ class PlayState extends FlxState
 		{
 			FlxG.camera.flash(FlxColor.ORANGE, 1,
 			                  function (){
-				                  results = new ResultsState();
-				                  results.result = ResultsState.Result.ORANGE_WIN;
-				                  FlxG.switchState(results);
+				                  FlxG.switchState(
+									  new ResultsState(ResultsState.Result.ORANGE_WIN));
 			                  });
 		}
 

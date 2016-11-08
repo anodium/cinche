@@ -6,14 +6,21 @@ import flixel.FlxState;
 
 enum Result
 {
+	DRAW;
 	BLUE_WIN;
 	ORANGE_WIN;
-	DRAW;
 }
 
 class ResultsState extends FlxState
 {
-	public var results:Result;
+	private var result:Result = Result.DRAW;
+
+	function new(?result:Result):Void
+	{
+		super();
+
+		this.result = result;
+	}
 
 	override public function create():Void
 	{
