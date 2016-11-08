@@ -36,9 +36,9 @@ class TitleState extends FlxState
 		#end
 		//When the sound finishes playing, go to the menu.
 		start_sound.onComplete = function()
-		                         {
-			                         FlxG.switchState(new MenuState());
-		                         };
+								{
+									FlxG.switchState(new MenuState());
+								};
 
 		//Load logo.
 		logo.loadGraphic("images/logo.png");
@@ -64,12 +64,12 @@ class TitleState extends FlxState
 
 		//Have logo slide in from the left, then flicker prompt.
 		tween = FlxTween.tween(logo, { x: LOGO_X, y: LOGO_Y }, 1.5,
-		                      { type: FlxTween.ONESHOT, onComplete: 
-		                      function(tween:FlxTween)
-		                      {
-			                      FlxFlicker.flicker(prompt, 0.35, 0.5, true);
-			                      add(prompt);
-		                      }});
+								{ type: FlxTween.ONESHOT, onComplete: 
+								function(tween:FlxTween)
+								{
+									FlxFlicker.flicker(prompt, 0.35, 0.5, true);
+									add(prompt);
+								}});
 
 		add(logo);
 		tween.start();

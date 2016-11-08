@@ -59,10 +59,10 @@ class PlayState extends FlxState
 		{
 			//They both crashed into each other; it's a draw.
 			FlxG.camera.flash(FlxColor.WHITE, 1,
-			                  function (){
-				                  FlxG.switchState(
-									  new ResultsState(ResultsState.Result.DRAW));
-			                  });
+								function (){
+									FlxG.switchState(
+									new ResultsState(ResultsState.Result.DRAW));
+								});
 		}
 
 		if (FlxG.pixelPerfectOverlap(ditB, field) ||
@@ -71,10 +71,10 @@ class PlayState extends FlxState
 		{
 			//ditB crashed into a trail; ditO wins.
 			FlxG.camera.flash(FlxColor.BLUE, 1,
-			                  function (){
-				                  FlxG.switchState(
-									  new ResultsState(ResultsState.Result.BLUE_WIN));
-			                  });
+								function (){
+									FlxG.switchState(
+										new ResultsState(ResultsState.Result.BLUE_WIN));
+								});
 		}
 
 		if (FlxG.pixelPerfectOverlap(ditO, field) ||
@@ -82,10 +82,10 @@ class PlayState extends FlxState
 		    0 >= ditO.y || ditO.y >= 64)
 		{
 			FlxG.camera.flash(FlxColor.ORANGE, 1,
-			                  function (){
-				                  FlxG.switchState(
-									  new ResultsState(ResultsState.Result.ORANGE_WIN));
-			                  });
+								function (){
+									FlxG.switchState(
+									new ResultsState(ResultsState.Result.ORANGE_WIN));
+								});
 		}
 
 		//Stamp dits onto field for trail.
