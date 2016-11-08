@@ -10,17 +10,21 @@ import flixel.math.FlxMath;
 
 class PlayState extends FlxState
 {
+	private var field:FlxSprite = new FlxSprite(0, 0);
+
 	private var ditB:FlxSprite = new FlxSprite();
 	private static inline var DIT_B_X = 4;
 	private static inline var DIT_B_Y = 32;
 
 	private var ditO:FlxSprite = new FlxSprite();
-	private static inline var DIT_O_X = 60;
+	private static inline var DIT_O_X = 59;
 	private static inline var DIT_O_Y = 32;
 
 	override public function create():Void
 	{
 		super.create();
+
+		field.makeGraphic(63, 63, FlxColor.BLACK);
 
 		ditB.makeGraphic(1, 1, FlxColor.BLUE);
 		ditB.x = DIT_B_X;
@@ -30,6 +34,7 @@ class PlayState extends FlxState
 		ditO.x = DIT_O_X;
 		ditO.y = DIT_O_Y;
 
+		add(field);
 		add(ditB);
 		add(ditO);
 	}
@@ -37,5 +42,55 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+
+		field.stamp(ditB, cast (ditB.x, Int), cast (ditB.y, Int));
+		field.stamp(ditO, cast (ditO.x, Int), cast (ditO.y, Int));
+
+		if (FlxG.keys.pressed.W)
+		{
+			ditB.y -= 1;
+		}
+
+		if (FlxG.keys.pressed.A)
+		{
+			ditB.x -= 1;
+		}
+
+		if (FlxG.keys.pressed.S)
+		{
+			ditB.y += 1;
+		}
+
+		if (FlxG.keys.pressed.D)
+		{
+			ditB.x += 1;
+		}
+
+		if (FlxG.keys.pressed.UP)
+		{
+			ditO.y -= 1;
+		}
+
+		if (FlxG.keys.pressed.LEFT)
+		{
+			ditO.x -= 1;
+		}
+
+		if (FlxG.keys.pressed.DOWN)
+		{
+			ditO.y += 1;
+		}
+
+		if (FlxG.keys.pressed.RIGHT)
+		{
+			ditO.x += 1;
+		}
+	}
+
+	override public function destroy():Void
+	{
+		field.destroy();
+		ditB.destroy();
+		ditO.destroy();
 	}
 }
