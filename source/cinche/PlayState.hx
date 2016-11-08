@@ -62,7 +62,9 @@ class PlayState extends FlxState
 			#end
 		}
 
-		if (FlxG.pixelPerfectOverlap(ditB, field))
+		if (FlxG.pixelPerfectOverlap(ditB, field) ||
+		    0 <= ditB.x || ditB.x <= 64 ||
+		    0 <= ditB.y || ditB.y <= 64)
 		{
 			//ditB crashed into a trail; ditO wins.
 			#if debug
@@ -70,7 +72,9 @@ class PlayState extends FlxState
 			#end
 		}
 
-		if (FlxG.pixelPerfectOverlap(ditO, field))
+		if (FlxG.pixelPerfectOverlap(ditO, field) ||
+		    0 <= ditO.x || ditO.x <= 64 ||
+		    0 <= ditO.y || ditO.y <= 64)
 		{
 			//ditO crashed into a trail; ditB wins.
 			#if debug
