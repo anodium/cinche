@@ -9,6 +9,7 @@ import flixel.tweens.FlxTween;
 
 class TitleState extends FlxState
 {
+	//Initialize objects
 	private var logo:FlxSprite = new FlxSprite();
 	private static inline var LOGO_X = 15;
 	private static inline var LOGO_Y = 16;
@@ -27,20 +28,24 @@ class TitleState extends FlxState
 	{
 		super.create();
 
+		//Load sound.
 		#if flash
 		start_sound = FlxG.sound.load("sounds/engine_start_white.mp3");
 		#else
 		start_sound = FlxG.sound.load("sounds/engine_start_white.ogg");
 		#end
+		//When the sound finishes playing, go to the menu.
 		start_sound.onComplete = function()
 		                         {
 			                         FlxG.switchState(new MenuState());
 		                         };
 
+		//Load logo.
 		logo.loadGraphic("images/logo.png");
 		logo.x = -64;
 		logo.y = LOGO_Y;
 
+		//Load platform-dependent call for action.
 		#if desktop
 		prompt.loadGraphic("images/start.png");
 		#elseif mobile
@@ -57,6 +62,7 @@ class TitleState extends FlxState
 		prompt.x = PROMPT_X;
 		prompt.y = PROMPT_Y;
 
+		//Have logo slide in from the left, then flicker prompt.
 		tween = FlxTween.tween(logo, { x: LOGO_X, y: LOGO_Y }, 1.5,
 		                      { type: FlxTween.ONESHOT, onComplete: 
 		                      function(tween:FlxTween)
@@ -71,6 +77,7 @@ class TitleState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
+		//Check if any input is given by the user.
 		#if desktop
 		if (FlxG.keys.firstJustPressed() != -1 && !FlxG.onMobile)
 		#elseif mobile
@@ -82,6 +89,7 @@ class TitleState extends FlxState
 		)
 		#end
 		{
+			//Make sure the transition can only start *once*.
 			if (!transition_started)
 			{
 				transition_started = true;

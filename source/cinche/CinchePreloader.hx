@@ -2,6 +2,7 @@ package cinche;
 
 import flixel.system.FlxBasePreloader;
 
+//Stub the default FlxPreloader, since it breaks the low-rez aesthetic.
 class CinchePreloader extends FlxBasePreloader
 {
 	override public function new(MinDisplayTime:Float = 0, ?AllowedURLs:Array<String>):Void
