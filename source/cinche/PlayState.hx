@@ -18,11 +18,13 @@ class PlayState extends FlxState
 	private static inline var DIT_O_X = 59;
 	private static inline var DIT_O_Y = 32;
 
+	private static inline var SPEED = 1;
+
 	override public function create():Void
 	{
 		super.create();
 
-		field.makeGraphic(63, 63, FlxColor.BLACK);
+		field.makeGraphic(63, 63, FlxColor.TRANSPARENT);
 
 		ditB.makeGraphic(1, 1, FlxColor.BLUE);
 		ditB.x = DIT_B_X;
@@ -46,7 +48,7 @@ class PlayState extends FlxState
 		{
 			//They both crashed into each other; it's a draw.
 			#if debug
-			FlxG.cameras.flash(FlxColor.WHITE);
+			FlxG.camera.flash(FlxColor.WHITE);
 			#end
 		}
 
@@ -54,7 +56,7 @@ class PlayState extends FlxState
 		{
 			//ditB crashed into a trail; ditO wins.
 			#if debug
-			FlxG.cameras.flash(FlxColor.BLUE);
+			FlxG.camera.flash(FlxColor.BLUE);
 			#end
 		}
 
@@ -62,7 +64,7 @@ class PlayState extends FlxState
 		{
 			//ditO crashed into a trail; ditB wins.
 			#if debug
-			FlxG.cameras.flash(FlxColor.ORANGE);
+			FlxG.camera.flash(FlxColor.ORANGE);
 			#end
 		}
 
@@ -73,43 +75,43 @@ class PlayState extends FlxState
 		//ditB Input
 		if (FlxG.keys.pressed.W)
 		{
-			ditB.y -= 1;
+			ditB.y -= SPEED;
 		}
 
 		if (FlxG.keys.pressed.A)
 		{
-			ditB.x -= 1;
+			ditB.x -= SPEED;
 		}
 
 		if (FlxG.keys.pressed.S)
 		{
-			ditB.y += 1;
+			ditB.y += SPEED;
 		}
 
 		if (FlxG.keys.pressed.D)
 		{
-			ditB.x += 1;
+			ditB.x += SPEED;
 		}
 
 		//ditO Input
 		if (FlxG.keys.pressed.UP)
 		{
-			ditO.y -= 1;
+			ditO.y -= SPEED;
 		}
 
 		if (FlxG.keys.pressed.LEFT)
 		{
-			ditO.x -= 1;
+			ditO.x -= SPEED;
 		}
 
 		if (FlxG.keys.pressed.DOWN)
 		{
-			ditO.y += 1;
+			ditO.y += SPEED;
 		}
 
 		if (FlxG.keys.pressed.RIGHT)
 		{
-			ditO.x += 1;
+			ditO.x += SPEED;
 		}
 	}
 
