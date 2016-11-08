@@ -5,6 +5,14 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.util.FlxColor;
 
+//Abstract away any internal representation for an enumeration.
+private enum Direction {
+	UP;
+	DOWN;
+	LEFT;
+	RIGHT;
+}
+
 class PlayState extends FlxState
 {
 	//Initialize objects
@@ -19,6 +27,8 @@ class PlayState extends FlxState
 	private static inline var DIT_O_Y = 32;
 
 	private static inline var SPEED = 1;
+	private var ditB_direction:Direction = Direction.RIGHT;
+	private var ditO_direction:Direction = Direction.LEFT;
 
 	override public function create():Void
 	{
@@ -75,41 +85,83 @@ class PlayState extends FlxState
 		//ditB Input
 		if (FlxG.keys.pressed.W)
 		{
-			ditB.y -= SPEED;
+			ditB_direction = Direction.UP;
 		}
 
 		if (FlxG.keys.pressed.A)
 		{
-			ditB.x -= SPEED;
+			ditB_direction = Direction.LEFT;
 		}
 
 		if (FlxG.keys.pressed.S)
 		{
-			ditB.y += SPEED;
+			ditB_direction = Direction.DOWN;
 		}
 
 		if (FlxG.keys.pressed.D)
 		{
-			ditB.x += SPEED;
+			ditB_direction = Direction.RIGHT;
 		}
 
 		//ditO Input
 		if (FlxG.keys.pressed.UP)
 		{
-			ditO.y -= SPEED;
+			ditO_direction = Direction.UP;
 		}
 
 		if (FlxG.keys.pressed.LEFT)
 		{
-			ditO.x -= SPEED;
+			ditO_direction = Direction.LEFT;
 		}
 
 		if (FlxG.keys.pressed.DOWN)
 		{
-			ditO.y += SPEED;
+			ditO_direction = Direction.DOWN;
 		}
 
 		if (FlxG.keys.pressed.RIGHT)
+		{
+			ditO_direction = Direction.RIGHT;
+		}
+
+		//ditB Movement
+		if (ditB_direction == Direction.UP)
+		{
+			ditB.y -= SPEED;
+		}
+
+		if (ditB_direction == Direction.LEFT)
+		{
+			ditB.x -= SPEED;
+		}
+
+		if (ditB_direction == Direction.DOWN)
+		{
+			ditB.y += SPEED;
+		}
+
+		if (ditB_direction == Direction.RIGHT)
+		{
+			ditB.x += SPEED;
+		}
+
+		//ditO Movement
+		if (ditO_direction == Direction.UP)
+		{
+			ditO.y -= SPEED;
+		}
+
+		if (ditO_direction == Direction.LEFT)
+		{
+			ditO.x -= SPEED;
+		}
+
+		if (ditO_direction == Direction.DOWN)
+		{
+			ditO.y += SPEED;
+		}
+
+		if (ditO_direction == Direction.RIGHT)
 		{
 			ditO.x += SPEED;
 		}
