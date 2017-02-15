@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="cinche" package="net.anodium.cinche" file="cinche" main="cinche.Main" version="0.0.1" company="Andrea Pascal" />
+	<app title="cinche" package="net.anodium.cinche" file="cinche" main="cinche.Main" version="0.8.0" company="Andrea Pascal" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
