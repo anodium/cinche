@@ -19,12 +19,12 @@ class ResultsState extends FlxState
 
 	//Initialize objects
 	private var game_blurb:FlxSprite = new FlxSprite();
-	private static inline var GAME_X = 15;
-	private static inline var GAME_Y = 16;
+	private static inline var GAME_X = 22;
+	private static inline var GAME_Y = 27;
 
 	private var winner_blurb:FlxSprite = new FlxSprite();
 	private static inline var WINNER_X = 18;
-	private static inline var WINNER_Y = 23;
+	private static inline var WINNER_Y = 32;
 
 	function new(?result:Result):Void
 	{
