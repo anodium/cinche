@@ -37,7 +37,7 @@ class TitleState extends FlxState
 		//When the sound finishes playing, go to the menu.
 		start_sound.onComplete = function()
 								{
-									FlxG.switchState(new PlayState());
+									FlxG.switchState(new MenuState());
 								};
 
 		//Load logo.
