@@ -79,9 +79,9 @@ class TitleState extends FlxState
 	{
 		//Check if any input is given by the user.
 		#if desktop
-		if (FlxG.keys.firstJustPressed() != -1 && !FlxG.onMobile)
+		if (FlxG.keys.firstJustPressed() != -1)
 		#elseif mobile
-		if (FlxG.touches.getFirst() != null && FlxG.onMobile)
+		if (FlxG.touches.getFirst() != null)
 		#elseif web
 		if (
 			(FlxG.keys.firstJustPressed() != -1 && !FlxG.onMobile) ||
