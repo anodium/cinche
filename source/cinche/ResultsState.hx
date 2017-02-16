@@ -43,10 +43,10 @@ class ResultsState extends FlxState
 		game_blurb.y = -64;
 
 		//Load the winner graphic.
-		if (result = Result.BLUE_WIN)
+		if (result == Result.BLUE_WIN)
 		{
 			winner_blurb.loadGraphic("images/orange_win.png");
-		} else if (result = Result.ORANGE_WIN)
+		} else if (result == Result.ORANGE_WIN)
 		{
 			winner_blurb.loadGraphic("images/blue_win.png");
 		} else {
