@@ -40,9 +40,23 @@ class ResultsState extends FlxState
 		//Load "Game!" blurb.
 		game_blurb.loadGraphic("images/game.png");
 		game_blurb.x = GAME_X;
-		game_blurb.y = GAME_Y;
+		game_blurb.y = -64;
+
+		//Load the winner graphic.
+		if (Result.BLUE_WIN)
+		{
+			winner_blurb.loadGraphic("images/orange_win.png");
+		} else if (Result.ORANGE_WIN)
+		{
+			winner_blurb.loadGraphic("images/blue_win.png");
+		} else {
+			winner_blurb.loadGraphic("images/draw.png");
+		}
+		winner_blurb.x = WINNER_X;
+		winner_blurb.y = 64;
 
 		add(game_blurb);
+		add(winner_blurb);
 	}
 
 	override public function update(elapsed:Float):Void
