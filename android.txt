@@ -1,3 +1,0 @@
-title=Cinche
-author=Andrea Pascal
-orientation=all
