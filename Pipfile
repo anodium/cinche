@@ -1,0 +1,20 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[requires]
+python_version = '3.6.4'
+
+
+[packages]
+
+"cocos2d" = "==0.6.5"
+
+
+[dev-packages]
+
+"flake8" = "*"
+"yapf" = "*"
