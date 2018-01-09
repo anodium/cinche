@@ -6,10 +6,11 @@ import cocos
 from hello import HelloWorld
 
 if __name__ == "__main__":
-    # director init takes the same arguments as pyglet.window
-    cocos.director.director.init()
+    cocos.director.director.init(caption='Cinche',
+                                 height=64, width=64, autoscale=True)
 
-    # We create a new layer, an instance of HelloWorld
+    cocos.director.director.get_virtual_coordinates
+
     hello_layer = HelloWorld()
 
     # A scene that contains the layer hello_layer
@@ -20,4 +21,3 @@ if __name__ == "__main__":
 
     # or you could have written, without so many comments:
     #      director.run( cocos.scene.Scene( HelloWorld() ) )
-    

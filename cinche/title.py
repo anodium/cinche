@@ -1,10 +1,10 @@
 import cocos
 
 
-class HelloWorld(cocos.layer.Layer):
+class TitleScene(cocos.layer.Layer):
 
     def __init__(self):
-        super(HelloWorld, self).__init__()
+        super(TitleScene, self).__init__()
 
         label = cocos.text.Label('Hello!',
                                  font_name='Courier New',
