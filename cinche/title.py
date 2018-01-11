@@ -1,20 +1,41 @@
-import cocos
+from cocos.actions import Blink
+from cocos.actions import CallFunc
+from cocos.actions import MoveBy
+from cocos.actions import Repeat
+from cocos.actions import sequence
+from cocos.actions import ToggleVisibility
+from cocos.layer import Layer
+from cocos.sprite import Sprite
 
 
-class TitleLayer(cocos.layer.Layer):
+class TitleLayer(Layer):
+    logo = None
+    prompt = None
+    move = None
+    blink = None
+    confirm = None
+    engine = None
+    rev = None
 
     def __init__(self):
         super(TitleLayer, self).__init__()
 
-        image = cocos.sprite.Sprite('assets/images/logo.png')
+        self.logo = Sprite('assets/images/logo.png')
+        self.logo.position = -17, 49
 
-        # label = cocos.text.Label('Hello!',
-        #                          font_name='Courier New',
-        #                          font_size=4,
-        #                          anchor_x='center', anchor_y='center')
+        self.prompt = Sprite('assets/images/start.png')
+        self.prompt.position = 0, -28
+        self.prompt.visible = False
 
-        # label.position = 320, 240
+        self.move = sequence(MoveBy((47, 0), 1.5),
+                             CallFunc(self.on_move_finish))
+        self.blink = sequence(ToggleVisibility(), Repeat(Blink(1, 0.75)))
+        self.confirm = Repeat(Blink(1, 0.25))
 
-        # TODO: Figure out coordinate space. Maybe lower-left corner origin?
-        image.position = 34, 5
-        self.add(image)
+        self.logo.add(self.prompt)
+        self.add(self.logo)
+
+        self.logo.do(self.move)
+
+    def on_move_finish(self):
+        self.prompt.do(self.blink)
