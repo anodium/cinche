@@ -4,11 +4,15 @@ from cocos.actions import MoveBy
 from cocos.actions import Repeat
 from cocos.actions import sequence
 from cocos.actions import ToggleVisibility
+from cocos.audio.effect import Effect
 from cocos.layer import Layer
 from cocos.sprite import Sprite
 
 
 class TitleLayer(Layer):
+
+    is_event_handler = True
+
     logo = None
     prompt = None
     move = None
@@ -32,6 +36,8 @@ class TitleLayer(Layer):
         self.blink = sequence(ToggleVisibility(), Repeat(Blink(1, 0.75)))
         self.confirm = Repeat(Blink(1, 0.25))
 
+        self.engine = Effect('assets/sounds/engine_start_white.wav')
+
         self.logo.add(self.prompt)
         self.add(self.logo)
 
@@ -39,3 +45,8 @@ class TitleLayer(Layer):
 
     def on_move_finish(self):
         self.prompt.do(self.blink)
+
+    def on_key_release(self, key, modifiers):
+        self.engine.play()
+        self.do(self.engine.action)
+        self.prompt.do(self.confirm)
