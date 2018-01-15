@@ -47,6 +47,11 @@ class TitleLayer(Layer):
         self.prompt.do(self.blink)
 
     def on_key_release(self, key, modifiers):
-        self.engine.play()
-        self.do(self.engine.action)
-        self.prompt.do(self.confirm)
+        if not self.logo.are_actions_running():
+            self.engine.play()
+            self.do(self.engine.action)
+            self.prompt.do(self.confirm)
+        else:
+            self.logo.stop()
+            self.logo.x = 30
+            self.on_move_finish()
