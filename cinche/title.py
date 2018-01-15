@@ -4,6 +4,7 @@ from cocos.actions import MoveBy
 from cocos.actions import Repeat
 from cocos.actions import sequence
 from cocos.actions import ToggleVisibility
+from cocos.audio.actions import PlayAction
 from cocos.audio.effect import Effect
 from cocos.layer import Layer
 from cocos.sprite import Sprite
@@ -13,13 +14,15 @@ class TitleLayer(Layer):
 
     is_event_handler = True
 
+    # Sprites
     logo = None
     prompt = None
-    move = None
+
+    # Actions
     blink = None
     confirm = None
-    engine = None
-    rev = None
+    move = None
+    play = None
 
     def __init__(self):
         super(TitleLayer, self).__init__()
@@ -36,7 +39,10 @@ class TitleLayer(Layer):
         self.blink = sequence(ToggleVisibility(), Repeat(Blink(1, 0.75)))
         self.confirm = Repeat(Blink(1, 0.25))
 
-        self.engine = Effect('assets/sounds/engine_start_white.ogg')
+        # TODO: Have transition happen after Effect is finished
+        self.play = sequence(PlayAction(
+                               Effect('assets/sounds/engine_start_white.ogg')),
+                             CallFunc(self.on_sound_done))
 
         self.logo.add(self.prompt)
         self.add(self.logo)
@@ -48,10 +54,12 @@ class TitleLayer(Layer):
 
     def on_key_release(self, key, modifiers):
         if not self.logo.are_actions_running():
-            self.engine.play()
-            self.do(self.engine.action)
             self.prompt.do(self.confirm)
+            self.prompt.do(self.play)
         else:
             self.logo.stop()
             self.logo.x = 30
             self.on_move_finish()
+
+    def on_sound_done(self):
+        print("action done")

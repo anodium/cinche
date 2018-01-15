@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from cinche.title import TitleLayer
+from cinche.menu import MenuLayer
+
 from cocos.director import director
 from cocos.scene import Scene
 from pyglet.gl import glEnable, glTexParameteri
@@ -15,6 +17,8 @@ if __name__ == "__main__":
     director.window.set_size(512, 512)
 
     title_scene = Scene(TitleLayer())
+    # TODO: Write MenuLayer
+    # menu_scene = Scene(MenuLayer())
     glEnable(GL_TEXTURE_2D)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
 
