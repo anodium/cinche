@@ -36,7 +36,7 @@ class TitleLayer(Layer):
         self.blink = sequence(ToggleVisibility(), Repeat(Blink(1, 0.75)))
         self.confirm = Repeat(Blink(1, 0.25))
 
-        self.engine = Effect('assets/sounds/engine_start_white.wav')
+        self.engine = Effect('assets/sounds/engine_start_white.ogg')
 
         self.logo.add(self.prompt)
         self.add(self.logo)
