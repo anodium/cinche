@@ -1,3 +1,5 @@
+from cinche.menu import MenuLayer
+
 from cocos.actions import Blink
 from cocos.actions import CallFunc
 from cocos.actions import MoveBy
@@ -6,7 +8,9 @@ from cocos.actions import sequence
 from cocos.actions import ToggleVisibility
 from cocos.audio.actions import PlayAction
 from cocos.audio.effect import Effect
+from cocos.director import director
 from cocos.layer import Layer
+from cocos.scene import Scene
 from cocos.sprite import Sprite
 
 
@@ -62,4 +66,4 @@ class TitleLayer(Layer):
             self.on_move_finish()
 
     def on_sound_done(self):
-        print("action done")
+        director.replace(Scene(MenuLayer()))
