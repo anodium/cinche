@@ -11,8 +11,7 @@ python_version = '3.6.4'
 
 [packages]
 
-"cocos2d" = "==0.6.5"
-
+"cocos2d" = { git = 'https://github.com/anodium/cocos.git', ref = 'audio-noinstant', editable = true }
 
 [dev-packages]
 

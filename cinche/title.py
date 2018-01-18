@@ -6,7 +6,7 @@ from cocos.actions import MoveBy
 from cocos.actions import Repeat
 from cocos.actions import sequence
 from cocos.actions import ToggleVisibility
-from cocos.audio.actions import PlayAction
+from cocos.audio.actions import PlayUntilFinishedAction
 from cocos.audio.effect import Effect
 from cocos.director import director
 from cocos.layer import Layer
@@ -44,7 +44,7 @@ class TitleLayer(Layer):
         self.confirm = Repeat(Blink(1, 0.25))
 
         # TODO: Have transition happen after Effect is finished
-        self.play = sequence(PlayAction(
+        self.play = sequence(PlayUntilFinishedAction(
                                Effect('assets/sounds/engine_start_white.ogg')),
                              CallFunc(self.on_sound_done))
 
