@@ -1,6 +1,6 @@
 # cinche
 
-Top-down racer I'm making to learn Haxe and HaxeFlixel
+Top-down racer I'm making to learn game development and discipline
 
 Originally intended as my entry to #LowRezJam2016
 
