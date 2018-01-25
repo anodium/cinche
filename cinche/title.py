@@ -43,7 +43,6 @@ class TitleLayer(Layer):
         self.blink = sequence(ToggleVisibility(), Repeat(Blink(1, 0.75)))
         self.confirm = Repeat(Blink(1, 0.25))
 
-        # TODO: Have transition happen after Effect is finished
         self.play = sequence(PlayUntilFinishedAction(
                                Effect('assets/sounds/engine_start_white.ogg')),
                              CallFunc(self.on_sound_done))

@@ -1,17 +1,25 @@
-import cocos
+from cinche.game import V2GameLayer
+
+from cocos.director import director
+from cocos.menu import Menu
+from cocos.layer import Layer
+from cocos.scene import Scene
 
 
-class MenuLayer(cocos.layer.Layer):
+class MenuLayer(Layer):
 
     def __init__(self):
         super(MenuLayer, self).__init__()
 
-        menu = MainMenu()
-        menu.position = 0, 0
-        self.add(menu)
+        # menu = MainMenu()
+        # menu.position = 0, 0
+        # self.add(menu)
+
+        director.replace(Scene(V2GameLayer()))
 
 
-class MainMenu(cocos.menu.Menu):
+class MainMenu(Menu):
+
     def __init__(self):
         super(MainMenu, self).__init__()
 
