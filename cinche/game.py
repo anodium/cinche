@@ -1,7 +1,11 @@
+from cocos.actions import MoveBy
 from cocos.layer import Layer
+from cocos.sprite import Sprite
 
 
 class GameLayer(Layer):
+
+    players = ()
 
     def __init__(self, mode):
         super(Layer, self).__init__()
