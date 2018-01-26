@@ -1,9 +1,9 @@
+from cinche.game import GameScene
 from cinche.game import V2GameLayer
 
 from cocos.director import director
 from cocos.menu import Menu
 from cocos.layer import Layer
-from cocos.scene import Scene
 
 
 class MenuLayer(Layer):
@@ -15,7 +15,7 @@ class MenuLayer(Layer):
         # menu.position = 0, 0
         # self.add(menu)
 
-        director.replace(Scene(V2GameLayer()))
+        director.replace(GameScene(V2GameLayer()))
 
 
 class MainMenu(Menu):
