@@ -19,7 +19,8 @@ class BitmapLayer(Layer):
         self.heigh = height
         self.width = width
 
-        self.bitmap = [[0 for x in range(width)] for y in range(height)]
+        self.bitmap = [[(0, 0, 0) for x in range(width)]
+                       for y in range(height)]
 
     def draw(self):
         super(Layer, self).draw()
