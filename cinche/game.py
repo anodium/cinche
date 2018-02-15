@@ -46,11 +46,14 @@ class V2GameLayer(GameLayer):
         super(GameLayer, self).__init__()
 
         self.paths = BitmapLayer(64, 64)
+        self.paths.position = (0, 64)
 
         self.p1_sprite = Sprite('assets/images/player.png',
-                                position=(7, 32), color=(255, 127, 0))
+                                color=(255, 127, 0))
+        self.p1_sprite.position = (7, 32)
         self.p2_sprite = Sprite('assets/images/player.png',
-                                position=(56, 31), color=(0, 127, 255))
+                                color=(0, 127, 255))
+        self.p2_sprite.position = (56, 31)
 
         self.p1_inertia = 6
         self.p1_timer = self.p1_inertia
